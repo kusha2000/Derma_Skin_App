@@ -1,3 +1,4 @@
+import 'package:derma_skin_app/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:derma_skin_app/login.dart';
 
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MainPage(),
     );
   }
@@ -58,11 +60,11 @@ class MainPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Login()),
+                    MaterialPageRoute(builder: (context) => const IntroPage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFF4F7158),
+                  backgroundColor: const Color(0xFF4F7158),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
