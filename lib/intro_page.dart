@@ -1,4 +1,5 @@
 import 'package:derma_skin_app/login.dart';
+import 'package:derma_skin_app/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class IntroPage extends StatelessWidget {
@@ -99,20 +100,28 @@ class IntroPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.05,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: const Color(0xff506D5B),
-                ),
-                child: const Center(
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                        color: Color(0xffffffff),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SignUp()),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: const Color(0xff506D5B),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                          color: Color(0xffffffff),
+                          fontSize: 17,
+                          fontWeight: FontWeight.w700),
+                    ),
                   ),
                 ),
               )

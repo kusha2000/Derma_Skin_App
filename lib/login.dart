@@ -109,6 +109,7 @@ class Login extends StatelessWidget {
                                 style: TextStyle(
                                   color: Color(0xFF506D5B),
                                 )),
+                            // ignore: prefer_const_constructors
                             SizedBox(width: 5),
                             ElevatedButton(
                               onPressed: () {},
