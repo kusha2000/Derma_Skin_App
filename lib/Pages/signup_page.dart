@@ -1,4 +1,4 @@
-import 'package:derma_skin_app/login.dart';
+import 'package:derma_skin_app/Pages/login.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -129,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 130.0, vertical: 15),
+                                  horizontal: 80.0, vertical: 15),
                             ),
                             child: const Text("SignUp",
                                 style: TextStyle(
@@ -159,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 130.0, vertical: 15),
+                                  horizontal: 80.0, vertical: 15),
                             ),
                             child: const Text(
                               "Sign In",

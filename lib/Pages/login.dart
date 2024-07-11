@@ -1,3 +1,4 @@
+import 'package:derma_skin_app/Pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -101,7 +102,8 @@ class Login extends StatelessWidget {
                                 const EdgeInsets.symmetric(horizontal: 30.0),
                           ),
                           child: const Text("Log In",
-                              style: TextStyle(fontSize: 17)),
+                              style: TextStyle(
+                                  fontSize: 17, color: Color(0xffffffff))),
                         ),
                         Column(
                           children: [
@@ -112,14 +114,20 @@ class Login extends StatelessWidget {
                             // ignore: prefer_const_constructors
                             SizedBox(width: 5),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SignUp()),
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 100.0),
+                                    horizontal: 80.0),
                               ),
                               child: const Text(
                                 "Sign Up",

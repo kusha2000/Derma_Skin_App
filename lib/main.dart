@@ -1,6 +1,5 @@
-import 'package:derma_skin_app/intro_page.dart';
+import 'package:derma_skin_app/Widgets/Navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:derma_skin_app/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,7 +59,8 @@ class MainPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const IntroPage()),
+                    // MaterialPageRoute(builder: (context) => const IntroPage()),
+                    MaterialPageRoute(builder: (context) => const Navbar()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -70,8 +70,8 @@ class MainPage extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 ),
-                child:
-                    const Text("Get Started", style: TextStyle(fontSize: 17)),
+                child: const Text("Get Started",
+                    style: TextStyle(fontSize: 17, color: Color(0xffffffff))),
               ),
             ),
             const SizedBox(height: 5),

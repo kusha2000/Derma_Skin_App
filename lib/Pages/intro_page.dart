@@ -1,5 +1,5 @@
-import 'package:derma_skin_app/login.dart';
-import 'package:derma_skin_app/signup_page.dart';
+import 'package:derma_skin_app/Pages/login.dart';
+import 'package:derma_skin_app/Pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class IntroPage extends StatelessWidget {
