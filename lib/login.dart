@@ -93,7 +93,7 @@ class Login extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFF4F7158),
+                            backgroundColor: const Color(0xFF4F7158),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -109,11 +109,12 @@ class Login extends StatelessWidget {
                                 style: TextStyle(
                                   color: Color(0xFF506D5B),
                                 )),
+                            // ignore: prefer_const_constructors
                             SizedBox(width: 5),
                             ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
+                                backgroundColor: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
