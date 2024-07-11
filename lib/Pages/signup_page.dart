@@ -1,5 +1,9 @@
+import 'package:derma_skin_app/Controllers/auth_controller.dart';
 import 'package:derma_skin_app/Pages/login.dart';
+import 'package:derma_skin_app/consts/firebase_conts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -9,6 +13,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  bool? ischecked = false;
+  var controller = Get.put(AuthController());
+
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  var passwordRetypeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +79,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           const SizedBox(height: 5),
                           TextFormField(
+                            controller: emailController,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
@@ -89,6 +101,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           const SizedBox(height: 5),
                           TextFormField(
+                            controller: passwordController,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
@@ -110,6 +123,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           const SizedBox(height: 5),
                           TextFormField(
+                            controller: passwordRetypeController,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
@@ -122,7 +136,36 @@ class _SignUpState extends State<SignUp> {
                           ),
                           const SizedBox(height: 30),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              if (ischecked != true) {
+                                controller.isloading(true);
+                                try {
+                                  await controller
+                                      .signupMethod(
+                                    context: context,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  )
+                                      .then(
+                                    (value) {
+                                      return controller.storeUserData(
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                      );
+                                    },
+                                  ).then((value) {
+                                    VxToast.show(context,
+                                        msg: "Sign Up Success");
+                                    Get.offAll(() => const Login());
+                                  });
+                                } catch (e) {
+                                  auth.signOut();
+                                  // ignore: use_build_context_synchronously
+                                  VxToast.show(context, msg: e.toString());
+                                  controller.isloading(false);
+                                }
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF4F7158),
                               shape: RoundedRectangleBorder(
