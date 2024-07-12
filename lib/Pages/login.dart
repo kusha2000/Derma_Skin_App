@@ -1,11 +1,45 @@
 import 'package:derma_skin_app/Pages/signup_page.dart';
+import 'package:derma_skin_app/Widgets/Navbar.dart';
+import 'package:derma_skin_app/consts/firebase_conts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:get/get.dart';
+import 'package:derma_skin_app/Controllers/auth_controller.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  changeScreen() {
+    //using getX
+    //Get.to(() => LoginScreen());
+    auth.authStateChanges().listen((User? user) {
+      if (user == null && mounted) {
+        Get.to(() => const Login());
+      } else {
+        Get.to(() => const Navbar());
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    changeScreen();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AuthController());
+
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ListView(
@@ -59,6 +93,7 @@ class Login extends StatelessWidget {
                         ),
                         const SizedBox(height: 5),
                         TextFormField(
+                          controller: emailController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -80,6 +115,8 @@ class Login extends StatelessWidget {
                         ),
                         const SizedBox(height: 5),
                         TextFormField(
+                          controller: passwordController,
+                          obscureText: true,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -91,20 +128,45 @@ class Login extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4F7158),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 30.0),
-                          ),
-                          child: const Text("Log In",
-                              style: TextStyle(
-                                  fontSize: 17, color: Color(0xffffffff))),
-                        ),
+                        controller.isloading.value
+                            ? const CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation(Colors.green),
+                              )
+                            : ElevatedButton(
+                                onPressed: () async {
+                                  controller.isloading(true);
+                                  await controller
+                                      .loginMethod(
+                                    context: context,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  )
+                                      .then((value) {
+                                    print("The Value:$value");
+                                    if (value != null) {
+                                      controller.isloading(false);
+                                      VxToast.show(context,
+                                          msg: "Logging Success");
+                                      Get.offAll(() => const Navbar());
+                                    } else {
+                                      controller.isloading(false);
+                                    }
+                                  });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF4F7158),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30.0),
+                                ),
+                                child: const Text("Log In",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        color: Color(0xffffffff))),
+                              ),
                         Column(
                           children: [
                             const Text("Don't have an account?",

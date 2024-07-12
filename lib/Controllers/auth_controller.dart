@@ -1,29 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:derma_skin_app/consts/firebase_conts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AuthController extends GetxController {
   var isloading = false.obs;
 
-  //textcontrollers
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-
   //login method
-  Future<UserCredential?> loginMethod({context}) async {
-    UserCredential? userCredential;
-
+  Future<UserCredential?> loginMethod({email, password, context}) async {
     try {
-      await auth.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return userCredential;
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
+      print("Error : $e");
+      return null;
     }
-
-    return userCredential;
   }
 
   //signup method
@@ -36,7 +30,8 @@ class AuthController extends GetxController {
       return userCredential;
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
-      return null; // Return null if there's an error
+      print("Error : $e");
+      return null;
     }
   }
 
@@ -49,7 +44,6 @@ class AuthController extends GetxController {
     if (user != null) {
       DocumentReference store = firestore.collection("users").doc(user.uid);
       store.set({
-        'password': password,
         'email': email,
       });
     } else {

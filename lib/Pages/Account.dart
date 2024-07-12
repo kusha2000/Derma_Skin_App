@@ -1,8 +1,16 @@
+import 'package:derma_skin_app/Pages/login.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:derma_skin_app/Controllers/auth_controller.dart';
 
-class Account extends StatelessWidget {
+class Account extends StatefulWidget {
   const Account({super.key});
 
+  @override
+  State<Account> createState() => _AccountState();
+}
+
+class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,6 +146,21 @@ class Account extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Contact Us",
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      await Get.put(AuthController()).signoutMethod(context);
+                      Get.offAll(() => const Login());
+                    },
+                    child: const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Log Out",
                         style: TextStyle(
                           color: Colors.black,
                         ),

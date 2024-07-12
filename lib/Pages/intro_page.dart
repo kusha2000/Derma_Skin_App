@@ -1,9 +1,36 @@
 import 'package:derma_skin_app/Pages/login.dart';
 import 'package:derma_skin_app/Pages/signup_page.dart';
+import 'package:derma_skin_app/Widgets/Navbar.dart';
+import 'package:derma_skin_app/consts/firebase_conts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class IntroPage extends StatelessWidget {
+class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
+
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
+  changeScreen() {
+    //using getX
+    //Get.to(() => LoginScreen());
+    auth.authStateChanges().listen((User? user) {
+      if (user == null && mounted) {
+        Get.to(() => const Login());
+      } else {
+        Get.to(() => const Navbar());
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    changeScreen();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -14,6 +14,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool? ischecked = false;
+  bool? isSuccess = false;
   var controller = Get.put(AuthController());
 
   var emailController = TextEditingController();
@@ -101,6 +102,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           const SizedBox(height: 5),
                           TextFormField(
+                            obscureText: true,
                             controller: passwordController,
                             decoration: InputDecoration(
                               filled: true,
@@ -123,6 +125,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           const SizedBox(height: 5),
                           TextFormField(
+                            obscureText: true,
                             controller: passwordRetypeController,
                             decoration: InputDecoration(
                               filled: true,
@@ -135,49 +138,81 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           const SizedBox(height: 30),
-                          ElevatedButton(
-                            onPressed: () async {
-                              if (ischecked != true) {
-                                controller.isloading(true);
-                                try {
-                                  await controller
-                                      .signupMethod(
-                                    context: context,
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                  )
-                                      .then(
-                                    (value) {
-                                      return controller.storeUserData(
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                      );
-                                    },
-                                  ).then((value) {
-                                    VxToast.show(context,
-                                        msg: "Sign Up Success");
-                                    Get.offAll(() => const Login());
-                                  });
-                                } catch (e) {
-                                  auth.signOut();
-                                  // ignore: use_build_context_synchronously
-                                  VxToast.show(context, msg: e.toString());
-                                  controller.isloading(false);
-                                }
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF4F7158),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 80.0, vertical: 15),
-                            ),
-                            child: const Text("SignUp",
-                                style: TextStyle(
-                                    fontSize: 17, color: Color(0xffffffff))),
-                          ),
+                          controller.isloading.value
+                              ? const CircularProgressIndicator(
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.green),
+                                )
+                              : ElevatedButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      ischecked = false;
+                                    });
+
+                                    if (emailController.text.isEmpty ||
+                                        passwordController.text.isEmpty ||
+                                        passwordRetypeController.text.isEmpty) {
+                                      VxToast.show(context,
+                                          msg: "Please enter valid values");
+                                    } else if (passwordController.text !=
+                                        passwordRetypeController.text) {
+                                      VxToast.show(context,
+                                          msg:
+                                              "Password and Verify Password are not the same");
+                                    } else {
+                                      setState(() {
+                                        ischecked = true;
+                                      });
+
+                                      if (ischecked == true) {
+                                        controller.isloading(true);
+                                        try {
+                                          await controller
+                                              .signupMethod(
+                                            context: context,
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                          )
+                                              .then(
+                                            (value) {
+                                              print("The value:$value");
+                                              controller.storeUserData(
+                                                email: emailController.text,
+                                                password:
+                                                    passwordController.text,
+                                              );
+                                              if (value != null) {
+                                                VxToast.show(context,
+                                                    msg: "Sign Up Success");
+                                                Get.offAll(() => const Login());
+                                              }
+                                            },
+                                          );
+                                        } catch (e) {
+                                          auth.signOut();
+                                          VxToast.show(context,
+                                              msg: e.toString());
+                                        } finally {
+                                          setState(() {
+                                            controller.isloading(false);
+                                          });
+                                        }
+                                      }
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF4F7158),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 80.0, vertical: 15),
+                                  ),
+                                  child: const Text("SignUp",
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          color: Color(0xffffffff))),
+                                ),
                           const SizedBox(
                             height: 10,
                           ),
