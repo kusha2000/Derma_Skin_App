@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:derma_skin_app/Pages/Get_Started_page.dart';
+import 'package:derma_skin_app/Pages/add_spot_page.dart';
 import 'package:derma_skin_app/Pages/body_page.dart';
 import 'package:derma_skin_app/Pages/intro_page.dart';
+import 'package:derma_skin_app/Pages/second_spot_page.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_page.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
 import 'package:derma_skin_app/Widgets/Navbar.dart';
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Navbar(),
+      home: SecondSpotPage(),
     );
   }
 }
