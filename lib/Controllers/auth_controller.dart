@@ -1,17 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:derma_skin_app/consts/firebase_conts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AuthController extends GetxController {
   var isloading = false.obs;
 
+  //textcontrollers
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
   //login method
-  Future<UserCredential?> loginMethod({email, password, context}) async {
+  Future<UserCredential?> loginMethod({context}) async {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: email, password: password);
+          email: emailController.text, password: passwordController.text);
       return userCredential;
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());

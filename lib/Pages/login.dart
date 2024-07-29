@@ -37,9 +37,6 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var controller = Get.put(AuthController());
 
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ListView(
@@ -93,7 +90,7 @@ class _LoginState extends State<Login> {
                         ),
                         const SizedBox(height: 5),
                         TextFormField(
-                          controller: emailController,
+                          controller: controller.emailController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -115,7 +112,7 @@ class _LoginState extends State<Login> {
                         ),
                         const SizedBox(height: 5),
                         TextFormField(
-                          controller: passwordController,
+                          controller: controller.passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             filled: true,
@@ -139,8 +136,6 @@ class _LoginState extends State<Login> {
                                   await controller
                                       .loginMethod(
                                     context: context,
-                                    email: emailController.text,
-                                    password: passwordController.text,
                                   )
                                       .then((value) {
                                     print("The Value:$value");
