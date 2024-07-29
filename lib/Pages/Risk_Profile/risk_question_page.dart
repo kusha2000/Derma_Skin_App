@@ -38,7 +38,6 @@ class _QuestionPageState extends State<QuestionPage> {
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xFF607C6D),
-        automaticallyImplyLeading: false,
       ),
       body: Container(
         color: Color(0xFFACBCB1),
