@@ -9,13 +9,15 @@ class SkinTypePage extends StatefulWidget {
   final AnswerRiskModel answerModel;
   final List<Question> questions;
 
-  SkinTypePage({
+  const SkinTypePage({
+    super.key,
     required this.questionIndex,
     required this.answerModel,
     required this.questions,
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _SkinTypePageState createState() => _SkinTypePageState();
 }
 
@@ -37,11 +39,11 @@ class _SkinTypePageState extends State<SkinTypePage> {
           'Skin Type',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color(0xFF607C6D),
+        backgroundColor: const Color(0xFF607C6D),
         automaticallyImplyLeading: false,
       ),
       body: Container(
-        color: Color(0xFFACBCB1),
+        color: const Color(0xFFACBCB1),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -50,7 +52,7 @@ class _SkinTypePageState extends State<SkinTypePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -58,7 +60,7 @@ class _SkinTypePageState extends State<SkinTypePage> {
                     style: const TextStyle(
                         color: Color(0xff607C6D), fontSize: 25.0),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ...question.options.map((option) {
                     return RadioListTile<String>(
                       title: Text(
@@ -113,7 +115,7 @@ class _SkinTypePageState extends State<SkinTypePage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              Color(0xFF607C6D), // Background color
+                              const Color(0xFF607C6D), // Background color
                         ),
                         onPressed: () {
                           if (selectedAnswer == "") {
@@ -147,7 +149,7 @@ class _SkinTypePageState extends State<SkinTypePage> {
                           widget.questionIndex < widget.questions.length - 1
                               ? 'Next'
                               : 'Done',
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),

@@ -2,6 +2,7 @@ import 'package:derma_skin_app/Controllers/nav_controller.dart';
 import 'package:derma_skin_app/Pages/TakePhotos.dart';
 import 'package:derma_skin_app/Pages/UV_index.dart';
 import 'package:derma_skin_app/Pages/Account.dart';
+import 'package:derma_skin_app/Pages/body_page.dart';
 import 'package:derma_skin_app/Pages/message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,7 +45,7 @@ class Navbar extends StatelessWidget {
     ];
 
     var navBody = {
-      Container(color: Colors.brown),
+      const BodyPage(),
       const Message(),
       const TakePhotos(),
       const UVIndex(),
