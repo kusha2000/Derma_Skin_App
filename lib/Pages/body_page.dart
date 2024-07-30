@@ -1,6 +1,9 @@
+import 'package:derma_skin_app/Pages/Risk_Profile/risk_start.dart';
+import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
 import 'package:derma_skin_app/Widgets/touch_man.dart';
 import 'package:derma_skin_app/constatnt/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BodyPage extends StatefulWidget {
   const BodyPage({super.key});
@@ -46,7 +49,9 @@ class _BodyPageState extends State<BodyPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => StartSkinType());
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.40,
                     height: 35,
@@ -63,7 +68,9 @@ class _BodyPageState extends State<BodyPage> {
                   width: 10,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => StartRiskProfile());
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.40,
                     height: 35,

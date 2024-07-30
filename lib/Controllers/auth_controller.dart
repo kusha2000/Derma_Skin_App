@@ -50,6 +50,13 @@ class AuthController extends GetxController {
       DocumentReference store = firestore.collection("users").doc(user.uid);
       store.set({
         'email': email,
+        'id': user.uid,
+        'password': password,
+        'imageUrl': '',
+        'fname': "",
+        'lname': "",
+        "birthday": "",
+        "gender": ""
       });
     } else {
       print('User is null. Unable to store user data.');

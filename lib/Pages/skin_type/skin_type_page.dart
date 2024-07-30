@@ -40,7 +40,6 @@ class _SkinTypePageState extends State<SkinTypePage> {
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color(0xFF607C6D),
-        automaticallyImplyLeading: false,
       ),
       body: Container(
         color: const Color(0xFFACBCB1),

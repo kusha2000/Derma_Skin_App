@@ -10,7 +10,7 @@ class TouchMan extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            '../images/man.jpeg',
+            'images/man.jpeg',
             height: MediaQuery.of(context).size.height * 0.4,
           ),
           SizedBox(

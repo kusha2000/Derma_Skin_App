@@ -125,9 +125,11 @@ class _QuestionPageState extends State<QuestionPage> {
                           }
                         }
                       },
-                      child: const Text(
-                        'Next',
-                        style: TextStyle(
+                      child: Text(
+                        widget.questionIndex < widget.questions.length - 1
+                            ? 'Next'
+                            : 'Done',
+                        style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20),

@@ -1,7 +1,9 @@
 import 'package:derma_skin_app/Pages/My_Plan.dart';
+import 'package:derma_skin_app/Pages/My_Profile.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_start.dart';
 import 'package:derma_skin_app/Pages/Set_Remider.dart';
 import 'package:derma_skin_app/Pages/login.dart';
+import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:derma_skin_app/Controllers/auth_controller.dart';
@@ -71,7 +73,9 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => MyProfile());
+                      },
                       child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -83,7 +87,9 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => StartSkinType());
+                      },
                       child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -127,139 +133,139 @@ class _AccountState extends State<Account> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 40,
-                  color: Color(0xFFBCC1AA),
-                  child: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: 16.0), // Add some left padding if needed
-                      child: Text(
-                        "Help & Support",
-                        style: TextStyle(
-                          color: Color(0xFF607C6D),
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Contact Us",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Change my password",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Skin cancer information",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "FAQ",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Instruction for use",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Privacy Policy",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Terms & Conditions",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Privacy & Security Settings",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Delete Account",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // Container(
+                //   width: double.infinity,
+                //   height: 40,
+                //   color: Color(0xFFBCC1AA),
+                //   child: const Align(
+                //     alignment: Alignment.centerLeft,
+                //     child: Padding(
+                //       padding: EdgeInsets.only(
+                //           left: 16.0), // Add some left padding if needed
+                //       child: Text(
+                //         "Help & Support",
+                //         style: TextStyle(
+                //           color: Color(0xFF607C6D),
+                //           fontSize: 17.0,
+                //           fontWeight: FontWeight.w600,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     TextButton(
+                //       onPressed: () {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Contact Us",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Change my password",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Skin cancer information",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "FAQ",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Instruction for use",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Privacy Policy",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Terms & Conditions",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Privacy & Security Settings",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     TextButton(
+                //       onPressed: () async {},
+                //       child: const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           "Delete Account",
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 Container(
                   width: double.infinity,
                   height: 40,
