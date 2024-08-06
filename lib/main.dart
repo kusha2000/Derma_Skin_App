@@ -7,6 +7,7 @@ import 'package:derma_skin_app/Pages/intro_page.dart';
 import 'package:derma_skin_app/Pages/second_spot_page.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_page.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
+import 'package:derma_skin_app/Pages/skin_model.dart';
 import 'package:derma_skin_app/Widgets/Navbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

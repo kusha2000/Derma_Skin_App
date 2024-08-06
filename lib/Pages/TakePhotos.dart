@@ -1,4 +1,6 @@
+import 'package:derma_skin_app/Pages/skin_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TakePhotos extends StatelessWidget {
   const TakePhotos({super.key});
@@ -47,7 +49,9 @@ class TakePhotos extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => SkinModel());
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF607C6D),
                         shape: RoundedRectangleBorder(
