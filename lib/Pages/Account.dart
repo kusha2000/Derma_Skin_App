@@ -192,18 +192,18 @@ class _AccountState extends State<Account> {
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "FAQ",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () async {},
+                    //   child: const Align(
+                    //     alignment: Alignment.centerLeft,
+                    //     child: Text(
+                    //       "FAQ",
+                    //       style: TextStyle(
+                    //         color: Colors.black,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     TextButton(
                       onPressed: () async {},
                       child: const Align(
@@ -216,42 +216,42 @@ class _AccountState extends State<Account> {
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Privacy Policy",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Terms & Conditions",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {},
-                      child: const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Privacy & Security Settings",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () async {},
+                    //   child: const Align(
+                    //     alignment: Alignment.centerLeft,
+                    //     child: Text(
+                    //       "Privacy Policy",
+                    //       style: TextStyle(
+                    //         color: Colors.black,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // TextButton(
+                    //   onPressed: () async {},
+                    //   child: const Align(
+                    //     alignment: Alignment.centerLeft,
+                    //     child: Text(
+                    //       "Terms & Conditions",
+                    //       style: TextStyle(
+                    //         color: Colors.black,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // TextButton(
+                    //   onPressed: () async {},
+                    //   child: const Align(
+                    //     alignment: Alignment.centerLeft,
+                    //     child: Text(
+                    //       "Privacy & Security Settings",
+                    //       style: TextStyle(
+                    //         color: Colors.black,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     TextButton(
                       onPressed: () async {},
                       child: const Align(
