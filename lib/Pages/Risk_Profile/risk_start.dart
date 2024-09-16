@@ -4,6 +4,8 @@ import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_question_page.dart';
 
 class StartRiskProfile extends StatelessWidget {
+  const StartRiskProfile({super.key});
+
   @override
   Widget build(BuildContext context) {
     final List<Question> questions = [

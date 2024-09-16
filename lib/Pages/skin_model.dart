@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -24,6 +25,7 @@ class _SkinModelState extends State<SkinModel> {
         uploadImage();
       } else {
         print('No image selected.');
+        AppHelpers.showSnackBar(context, "Please Select the an Image");
       }
     });
   }

@@ -1,10 +1,11 @@
 // import 'package:derma_skin_app/Pages/Risk_Profile/risk_question.dart';
 import 'package:derma_skin_app/Pages/skin_type/fair_skin_result_page.dart';
-import 'package:derma_skin_app/Pages/skin_type/olive_skin_result_page.dart';
+
 import 'package:derma_skin_app/Pages/skin_type/question.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_answer.dart';
+import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+
 // import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
 // import 'package:derma_skin_app/Pages/skin_type/fair_skin_page.dart';
 // import 'package:derma_skin_app/Pages/skin_type/olive_skin_page.dart';
@@ -51,12 +52,24 @@ class _SkinTypePageState extends State<SkinTypePage> {
     if (score < 10) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const FairSkinResultPage()),
+        MaterialPageRoute(
+          builder: (context) => const FairSkinResultPage(
+            title: 'Fair',
+            description:
+                'You tend to tan easily and are less likely to burn. But you are still at risk of developing melanoma.\n\n In addition to adopting preventive behaviors, such as protection from sun exposure, it is recommended to check your skin head-to-toe every three months, paying careful attention to any suspicious growth.\n\nFor any suspicious skin spots, it is recommended to use Derma to take photos for analysis and keeping track of potential growth. This allows you to keep better track of your skin and bring more fact-based information to a skin checkup with your healthcare professional.',
+          ),
+        ),
       );
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const OliveSkinResultPage()),
+        MaterialPageRoute(
+          builder: (context) => const FairSkinResultPage(
+            title: 'Olive',
+            description:
+                'You sometimes burn and sometimes tan in the sun. You are susceptible to skin damage as well as cancers like basal cell carcinoma and squamous cell carcinoma. You are at higher risk of developing melanoma.\n\nIn addition to adopting preventive behaviors, such as protection from sun exposure, it is recommended to check your skin head-to-toe every three months, paying careful attention to any suspicious growth.\n\nFor any suspicious skin spots, it is recommended to use Derma to take photos for analysis and keeping track of potential growth. This allows you to keep better track of your skin and bring more fact-based information to a skin checkup with your healthcare professional. ',
+          ),
+        ),
       );
     }
   }
@@ -143,8 +156,8 @@ class _SkinTypePageState extends State<SkinTypePage> {
                         ),
                         onPressed: () {
                           if (selectedAnswer == "") {
-                            VxToast.show(context,
-                                msg: "Please Select the Options");
+                            AppHelpers.showSnackBar(
+                                context, "Please Select Any Option");
                           } else {
                             if (widget.questionIndex <
                                 widget.questions.length - 1) {

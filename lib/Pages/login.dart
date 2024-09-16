@@ -1,9 +1,9 @@
 import 'package:derma_skin_app/Pages/signup_page.dart';
 import 'package:derma_skin_app/Widgets/Navbar.dart';
 import 'package:derma_skin_app/consts/firebase_conts.dart';
+import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:get/get.dart';
 import 'package:derma_skin_app/Controllers/auth_controller.dart';
 
@@ -91,6 +91,12 @@ class _LoginState extends State<Login> {
                         const SizedBox(height: 5),
                         TextFormField(
                           controller: controller.emailController,
+                          validator: (value) {
+                            value!.isEmpty
+                                ? AppHelpers.showSnackBar(
+                                    context, "Please Enter valid Email")
+                                : null;
+                          },
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -113,6 +119,17 @@ class _LoginState extends State<Login> {
                         const SizedBox(height: 5),
                         TextFormField(
                           controller: controller.passwordController,
+                          validator: (value) {
+                            value!.length < 6
+                                ? AppHelpers.showSnackBar(context,
+                                    "Password must be at least 6 characters")
+                                : null;
+
+                            value.isEmpty
+                                ? AppHelpers.showSnackBar(
+                                    context, "Please Enter Password")
+                                : null;
+                          },
                           obscureText: true,
                           decoration: InputDecoration(
                             filled: true,
@@ -124,44 +141,51 @@ class _LoginState extends State<Login> {
                                 vertical: 12, horizontal: 10),
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 32),
                         controller.isloading.value
                             ? const CircularProgressIndicator(
                                 valueColor:
                                     AlwaysStoppedAnimation(Colors.green),
                               )
-                            : ElevatedButton(
-                                onPressed: () async {
-                                  controller.isloading(true);
-                                  await controller
-                                      .loginMethod(
-                                    context: context,
-                                  )
-                                      .then((value) {
-                                    print("The Value:$value");
-                                    if (value != null) {
-                                      controller.isloading(false);
-                                      VxToast.show(context,
-                                          msg: "Logging Success");
-                                      Get.offAll(() => const Navbar());
-                                    } else {
-                                      controller.isloading(false);
-                                    }
-                                  });
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF4F7158),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                            : SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: ElevatedButton(
+                                  onPressed: () async {
+                                    controller.isloading(true);
+                                    await controller
+                                        .loginMethod(
+                                      context: context,
+                                    )
+                                        .then((value) {
+                                      if (value != null) {
+                                        controller.isloading(false);
+                                        AppHelpers.showSnackBar(
+                                            context, "login successfully");
+                                        Get.offAll(() => const Navbar());
+                                      } else {
+                                        controller.isloading(false);
+                                        AppHelpers.showSnackBar(
+                                            context, "Please try again");
+                                      }
+                                    });
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF4F7158),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    // padding: const EdgeInsets.symmetric(
+                                    //     horizontal: 30.0),
                                   ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0),
+                                  child: const Text("Log In",
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          color: Color(0xffffffff))),
                                 ),
-                                child: const Text("Log In",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        color: Color(0xffffffff))),
                               ),
+                        const SizedBox(
+                          height: 16,
+                        ),
                         Column(
                           children: [
                             const Text("Don't have an account?",
@@ -169,30 +193,38 @@ class _LoginState extends State<Login> {
                                   color: Color(0xFF506D5B),
                                 )),
                             // ignore: prefer_const_constructors
-                            SizedBox(width: 5),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const SignUp()),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.7,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const SignUp()),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 80.0),
                                 ),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 80.0),
-                              ),
-                              child: const Text(
-                                "Sign Up",
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Color(0xFF506D5B),
+                                child: const Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: Color(0xFF506D5B),
+                                  ),
                                 ),
                               ),
+                            ),
+                            const SizedBox(
+                              height: 16,
                             ),
                             const Text("Or continue with",
                                 style: TextStyle(

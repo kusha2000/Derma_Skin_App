@@ -1,15 +1,16 @@
+import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
+import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_question.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
-import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class QuestionPage extends StatefulWidget {
   final int questionIndex;
   final AnswerRiskModel answerModel;
   final List<Question> questions;
 
-  QuestionPage({
+  const QuestionPage({
+    super.key,
     required this.questionIndex,
     required this.answerModel,
     required this.questions,
@@ -37,10 +38,10 @@ class _QuestionPageState extends State<QuestionPage> {
           'Risk Profile',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color(0xFF607C6D),
+        backgroundColor: const Color(0xFF607C6D),
       ),
       body: Container(
-        color: Color(0xFFACBCB1),
+        color: const Color(0xFFACBCB1),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -52,7 +53,7 @@ class _QuestionPageState extends State<QuestionPage> {
                     question.questionText,
                     style: const TextStyle(color: Colors.white, fontSize: 25.0),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   ...question.options.map((option) {
                     return RadioListTile<String>(
                       title: Text(
@@ -95,12 +96,13 @@ class _QuestionPageState extends State<QuestionPage> {
                       ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF607C6D), // Background color
+                        backgroundColor:
+                            const Color(0xFF607C6D), // Background color
                       ),
                       onPressed: () {
                         if (selectedAnswer == "") {
-                          VxToast.show(context,
-                              msg: "Please Select the Options");
+                          AppHelpers.showSnackBar(
+                              context, "Please Select Option");
                         } else {
                           if (widget.questionIndex <
                               widget.questions.length - 1) {
@@ -115,13 +117,7 @@ class _QuestionPageState extends State<QuestionPage> {
                               ),
                             );
                           } else {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => RiskResultPage(
-                                    answerModel: widget.answerModel),
-                              ),
-                            );
+                            _navigateToResultPage(context);
                           }
                         }
                       },
@@ -143,5 +139,74 @@ class _QuestionPageState extends State<QuestionPage> {
         ),
       ),
     );
+  }
+
+  // Function to evaluate risk level based on answers and navigate accordingly
+  void _navigateToResultPage(BuildContext context) {
+    int yesCount =
+        widget.answerModel.answers.where((answer) => answer == 'Yes').length;
+
+    if (yesCount >= 6) {
+      // Navigate to high risk page
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RiskResultPage(
+            title: 'High Risk',
+            description1:
+                'Based on your answers, we’ve found that you may have a higher risk of developing skin cancer in your lifetime.',
+            description2:
+                'All of us are exposed to UV and sunlight on a daily basis, which acts as the main contributor to 90% of skin cancers.',
+            description3:
+                'In saying this, we recommend the following tips to keep your skin healthy:',
+            description4: '''- Apply SPF30 or higher sunscreen daily.
+- When outdoors (between 11-4pm), wear a hat, long sleeves, and sunglasses.
+- Avoid sunburns.
+- Avoid sun beds (high UV radiation).
+- Monitor your skin regularly using Derma. This includes identifying the appearance of new skin spots or changes in shape, color, size, or texture of existing skin spots.''',
+          ),
+        ),
+      );
+    } else if (yesCount >= 3) {
+      // Navigate to medium risk page
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RiskResultPage(
+            title: 'Medium Risk',
+            description1:
+                'Based on your answers, you may have a moderate risk of developing skin cancer in your lifetime.',
+            description2:
+                'Exposure to UV radiation and sunlight is a key factor in skin cancer risk. However, moderate risk doesn’t mean you shouldn’t take precautions.',
+            description3:
+                'We recommend the following tips to maintain healthy skin:',
+            description4: '''- Use SPF30 or higher sunscreen daily.
+- Wear protective clothing, including a hat and sunglasses when outside during peak sunlight hours (11-4pm).
+- Avoid sunburns and stay mindful of the time spent in direct sunlight.
+- Check your skin for new spots and monitor any changes in existing moles or skin marks.''',
+          ),
+        ),
+      );
+    } else {
+      // Navigate to low risk page
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RiskResultPage(
+            title: 'Low Risk',
+            description1:
+                'Based on your answers, you have a lower risk of developing skin cancer. However, it’s still important to protect your skin from UV exposure.',
+            description2:
+                'Even with a lower risk, everyone is at some risk of skin damage from the sun. Preventive measures are still vital to maintaining healthy skin.',
+            description3: 'Follow these tips to keep your skin in good health:',
+            description4:
+                '''- Apply sunscreen with SPF30 or higher when outdoors.
+- Try to stay in the shade, especially between 11am and 4pm.
+- Avoid sunburns and protect yourself during prolonged exposure to the sun.
+- Continue monitoring your skin for any changes and consult a dermatologist if needed.''',
+          ),
+        ),
+      );
+    }
   }
 }
