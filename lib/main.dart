@@ -1,7 +1,9 @@
 import 'dart:io';
 
 // import 'package:derma_skin_app/Pages/Account.dart';
+import 'package:derma_skin_app/Pages/Account.dart';
 import 'package:derma_skin_app/Pages/Get_Started_page.dart';
+import 'package:derma_skin_app/help_supprot_pages/cancer_information_page.dart';
 // import 'package:derma_skin_app/Pages/Risk_Profile/risk_question_page.dart';
 // import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
 // import 'package:derma_skin_app/Pages/Risk_Profile/risk_start.dart';
@@ -76,7 +78,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GetStarted(),
+      home: CancerInformationPage(),
 //       home: RiskResultPage(
 //         title: 'High Risk',
 //         description1:
