@@ -1,6 +1,6 @@
-class Question {
+class QuestionSkin {
   final String questionText;
   final List<String> options;
 
-  Question({required this.questionText, required this.options});
+  QuestionSkin({required this.questionText, required this.options});
 }

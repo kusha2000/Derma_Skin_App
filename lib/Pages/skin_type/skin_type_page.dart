@@ -1,13 +1,18 @@
+// import 'package:derma_skin_app/Pages/Risk_Profile/risk_question.dart';
+import 'package:derma_skin_app/Pages/skin_type/fair_skin_result_page.dart';
+import 'package:derma_skin_app/Pages/skin_type/olive_skin_result_page.dart';
+import 'package:derma_skin_app/Pages/skin_type/question.dart';
+import 'package:derma_skin_app/Pages/skin_type/skin_type_answer.dart';
 import 'package:flutter/material.dart';
-import 'package:derma_skin_app/Pages/Risk_Profile/risk_question.dart';
-import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
-import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
 import 'package:velocity_x/velocity_x.dart';
+// import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
+// import 'package:derma_skin_app/Pages/skin_type/fair_skin_page.dart';
+// import 'package:derma_skin_app/Pages/skin_type/olive_skin_page.dart';
 
 class SkinTypePage extends StatefulWidget {
   final int questionIndex;
-  final AnswerRiskModel answerModel;
-  final List<Question> questions;
+  final SkinTypeAnswerModel answerModel;
+  final List<QuestionSkin> questions;
 
   const SkinTypePage({
     super.key,
@@ -17,7 +22,6 @@ class SkinTypePage extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
   _SkinTypePageState createState() => _SkinTypePageState();
 }
 
@@ -30,9 +34,37 @@ class _SkinTypePageState extends State<SkinTypePage> {
     selectedAnswer = widget.answerModel.answers[widget.questionIndex];
   }
 
+  void evaluateAndNavigate() {
+    // Custom logic to evaluate the selected answers
+    int score = 0;
+
+    // Example scoring logic based on selected answers
+    for (var answer in widget.answerModel.answers) {
+      if (answer.contains('Fair') || answer.contains('Light')) {
+        score += 1;
+      } else if (answer.contains('Olive') || answer.contains('Brown')) {
+        score += 2;
+      }
+    }
+
+    // Navigate based on score or logic
+    if (score < 10) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const FairSkinResultPage()),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const OliveSkinResultPage()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final question = widget.questions[widget.questionIndex];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -51,9 +83,7 @@ class _SkinTypePageState extends State<SkinTypePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   Text(
                     question.questionText,
                     style: const TextStyle(
@@ -88,9 +118,7 @@ class _SkinTypePageState extends State<SkinTypePage> {
                       Padding(
                         padding: const EdgeInsets.only(right: 50),
                         child: SizedBox(
-                          width: widget.questionIndex == 0
-                              ? MediaQuery.of(context).size.width * 0.5
-                              : MediaQuery.of(context).size.width * 0.35,
+                          width: MediaQuery.of(context).size.width * 0.35,
                           height: 40,
                           child: ElevatedButton(
                             onPressed: () {
@@ -107,14 +135,11 @@ class _SkinTypePageState extends State<SkinTypePage> {
                         ),
                       ),
                     SizedBox(
-                      width: widget.questionIndex == 0
-                          ? MediaQuery.of(context).size.width * 0.5
-                          : MediaQuery.of(context).size.width * 0.35,
+                      width: MediaQuery.of(context).size.width * 0.35,
                       height: 40,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color(0xFF607C6D), // Background color
+                          backgroundColor: const Color(0xFF607C6D),
                         ),
                         onPressed: () {
                           if (selectedAnswer == "") {
@@ -134,13 +159,8 @@ class _SkinTypePageState extends State<SkinTypePage> {
                                 ),
                               );
                             } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RiskResultPage(
-                                      answerModel: widget.answerModel),
-                                ),
-                              );
+                              // Done button pressed - evaluate and navigate
+                              evaluateAndNavigate();
                             }
                           }
                         },
