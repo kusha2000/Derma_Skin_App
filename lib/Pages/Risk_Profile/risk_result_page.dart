@@ -1,23 +1,83 @@
+import 'package:derma_skin_app/Widgets/risk_result_content.dart';
+import 'package:derma_skin_app/constatnt/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
 
 class RiskResultPage extends StatelessWidget {
-  final AnswerRiskModel answerModel;
-
-  RiskResultPage({required this.answerModel});
+  final String title;
+  final String description1;
+  final String description2;
+  final String description3;
+  final String description4;
+  const RiskResultPage(
+      {super.key,
+      required this.title,
+      required this.description1,
+      required this.description2,
+      required this.description3,
+      required this.description4});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Results')),
-      body: ListView.builder(
-        itemCount: answerModel.answers.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text('Question ${index + 1}'),
-            subtitle: Text('Answer: ${answerModel.answers[index]}'),
-          );
-        },
+      appBar: AppBar(
+        title: const Text(
+          'Skin Type',
+          style: TextStyle(color: Colors.white),
+        ),
+        // backgroundColor: const Color(0xFFF5F5F5),
+        backgroundColor: const Color(0xFF607C6D),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            RiskResultContent(
+              title: title,
+              description1: description1,
+              description2: description2,
+              description3: description3,
+              description4: description4,
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.appBarColor),
+                child: Text(
+                  "DONE",
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.kButtonColor),
+                child: Text(
+                  "Retake",
+                  style: TextStyle(
+                      color: AppColors.appBarColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

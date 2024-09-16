@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:derma_skin_app/Pages/Get_Started_page.dart';
+import 'package:derma_skin_app/Pages/Risk_Profile/risk_question_page.dart';
+import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
+import 'package:derma_skin_app/Pages/Risk_Profile/risk_start.dart';
 import 'package:derma_skin_app/Pages/add_spot_page.dart';
 import 'package:derma_skin_app/Pages/body_page.dart';
 import 'package:derma_skin_app/Pages/intro_page.dart';
@@ -72,10 +75,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FairSkinResultPage(
-        title: 'Fair',
-        description:
-            '"You tend to tan easily and are less likely to burn. But you are still at risk of developing melanoma.\n\n In addition to adopting preventive behaviors, such as protection from sun exposure, it is recommended to check your skin head-to-toe every three months, paying careful attention to any suspicious growth.\n\nFor any suspicious skin spots, it is recommended to use Derma to take photos for analysis and keeping track of potential growth. This allows you to keep better track of your skin and bring more fact-based information to a skin checkup with your healthcare professional."',
+      home: RiskResultPage(
+        title: 'High Risk',
+        description1:
+            'Based on your answers, we’ve found that you may have a higher risk of developing skin cancer in your lifetime.',
+        description2:
+            'All of us are exposed to UV and sunlight on a daily basis, which acts as the main contributor to 90% of skin cancers.',
+        description3:
+            'In saying this, we recommend the following tips to keep your skin healthy:',
+        description4: '''- Apply SPF30 or higher sunscreen daily.
+- When outdoors (between 11-4pm), wear a hat, long sleeves, and sunglasses.
+- Avoid sunburns.
+- Avoid sun beds (high UV radiation).
+- Monitor your skin regularly using Derma. This includes identifying the appearance of new skin spots or changes in shape, color, size, or texture of existing skin spots.''',
       ),
     );
   }
