@@ -1,15 +1,16 @@
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
+import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_question.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class QuestionPage extends StatefulWidget {
   final int questionIndex;
   final AnswerRiskModel answerModel;
   final List<Question> questions;
 
-  QuestionPage({
+  const QuestionPage({
+    super.key,
     required this.questionIndex,
     required this.answerModel,
     required this.questions,
@@ -37,10 +38,10 @@ class _QuestionPageState extends State<QuestionPage> {
           'Risk Profile',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color(0xFF607C6D),
+        backgroundColor: const Color(0xFF607C6D),
       ),
       body: Container(
-        color: Color(0xFFACBCB1),
+        color: const Color(0xFFACBCB1),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -52,7 +53,7 @@ class _QuestionPageState extends State<QuestionPage> {
                     question.questionText,
                     style: const TextStyle(color: Colors.white, fontSize: 25.0),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   ...question.options.map((option) {
                     return RadioListTile<String>(
                       title: Text(
@@ -95,12 +96,13 @@ class _QuestionPageState extends State<QuestionPage> {
                       ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF607C6D), // Background color
+                        backgroundColor:
+                            const Color(0xFF607C6D), // Background color
                       ),
                       onPressed: () {
                         if (selectedAnswer == "") {
-                          VxToast.show(context,
-                              msg: "Please Select the Options");
+                          AppHelpers.showSnackBar(
+                              context, "Please Select Option");
                         } else {
                           if (widget.questionIndex <
                               widget.questions.length - 1) {
@@ -149,7 +151,7 @@ class _QuestionPageState extends State<QuestionPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RiskResultPage(
+          builder: (context) => const RiskResultPage(
             title: 'High Risk',
             description1:
                 'Based on your answers, we’ve found that you may have a higher risk of developing skin cancer in your lifetime.',
@@ -170,7 +172,7 @@ class _QuestionPageState extends State<QuestionPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RiskResultPage(
+          builder: (context) => const RiskResultPage(
             title: 'Medium Risk',
             description1:
                 'Based on your answers, you may have a moderate risk of developing skin cancer in your lifetime.',
@@ -190,7 +192,7 @@ class _QuestionPageState extends State<QuestionPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RiskResultPage(
+          builder: (context) => const RiskResultPage(
             title: 'Low Risk',
             description1:
                 'Based on your answers, you have a lower risk of developing skin cancer. However, it’s still important to protect your skin from UV exposure.',

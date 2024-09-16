@@ -1,10 +1,11 @@
 // import 'package:derma_skin_app/Pages/Risk_Profile/risk_question.dart';
 import 'package:derma_skin_app/Pages/skin_type/fair_skin_result_page.dart';
-import 'package:derma_skin_app/Pages/skin_type/olive_skin_result_page.dart';
+
 import 'package:derma_skin_app/Pages/skin_type/question.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_answer.dart';
+import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+
 // import 'package:derma_skin_app/Pages/Risk_Profile/risk_answer_model.dart';
 // import 'package:derma_skin_app/Pages/skin_type/fair_skin_page.dart';
 // import 'package:derma_skin_app/Pages/skin_type/olive_skin_page.dart';
@@ -155,8 +156,8 @@ class _SkinTypePageState extends State<SkinTypePage> {
                         ),
                         onPressed: () {
                           if (selectedAnswer == "") {
-                            VxToast.show(context,
-                                msg: "Please Select the Options");
+                            AppHelpers.showSnackBar(
+                                context, "Please Select Any Option");
                           } else {
                             if (widget.questionIndex <
                                 widget.questions.length - 1) {

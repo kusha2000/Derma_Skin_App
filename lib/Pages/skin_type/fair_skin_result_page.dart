@@ -30,7 +30,7 @@ class FairSkinResultPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Text(
@@ -42,7 +42,7 @@ class FairSkinResultPage extends StatelessWidget {
               ),
               textAlign: TextAlign.justify,
             ),
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             SizedBox(
@@ -52,16 +52,16 @@ class FairSkinResultPage extends StatelessWidget {
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.appBarColor),
-                child: Text(
+                child: const Text(
                   "DONE",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 32,
             ),
             SizedBox(

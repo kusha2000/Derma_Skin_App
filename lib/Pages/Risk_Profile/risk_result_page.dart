@@ -38,7 +38,7 @@ class RiskResultPage extends StatelessWidget {
               description3: description3,
               description4: description4,
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -48,16 +48,16 @@ class RiskResultPage extends StatelessWidget {
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.appBarColor),
-                child: Text(
+                child: const Text(
                   "DONE",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 32,
             ),
             SizedBox(
