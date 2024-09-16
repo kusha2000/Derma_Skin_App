@@ -5,6 +5,7 @@ import 'package:derma_skin_app/Pages/add_spot_page.dart';
 import 'package:derma_skin_app/Pages/body_page.dart';
 import 'package:derma_skin_app/Pages/intro_page.dart';
 import 'package:derma_skin_app/Pages/second_spot_page.dart';
+import 'package:derma_skin_app/Pages/skin_type/fair_skin_result_page.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_page.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
 import 'package:derma_skin_app/Pages/skin_model.dart';
@@ -71,7 +72,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StartSkinType(),
+      home: FairSkinResultPage(
+        title: 'Fair',
+        description:
+            '"You tend to tan easily and are less likely to burn. But you are still at risk of developing melanoma.\n\n In addition to adopting preventive behaviors, such as protection from sun exposure, it is recommended to check your skin head-to-toe every three months, paying careful attention to any suspicious growth.\n\nFor any suspicious skin spots, it is recommended to use Derma to take photos for analysis and keeping track of potential growth. This allows you to keep better track of your skin and bring more fact-based information to a skin checkup with your healthcare professional."',
+      ),
     );
   }
 }
