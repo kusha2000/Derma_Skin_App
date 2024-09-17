@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CancerInformationPage(),
+      home: Account(),
 //       home: RiskResultPage(
 //         title: 'High Risk',
 //         description1:
