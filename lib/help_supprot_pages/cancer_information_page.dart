@@ -8,7 +8,7 @@ class CancerInformationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF607C6D).withOpacity(0.5),
+          backgroundColor: const Color(0xFF607C6D).withOpacity(0.5),
           title: const Center(
             child: Text(
               "Cancer Information Page",
@@ -19,13 +19,13 @@ class CancerInformationPage extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: Color(0xFFeaecdf).withOpacity(0.5),
+            color: const Color(0xFFeaecdf).withOpacity(0.5),
             child: Center(
               child: Column(children: [
                 Container(
                   width: double.infinity,
                   height: 40,
-                  color: Color(0xFFBCC1AA).withOpacity(0.5),
+                  color: const Color(0xFFBCC1AA).withOpacity(0.5),
                   child: const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -143,7 +143,7 @@ class CancerInformationPage extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   height: 40,
-                  color: Color(0xFFBCC1AA).withOpacity(0.5),
+                  color: const Color(0xFFBCC1AA).withOpacity(0.5),
                   child: const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -256,7 +256,7 @@ class CancerInformationPage extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 40,
-                      color: Color(0xFFBCC1AA).withOpacity(0.5),
+                      color: const Color(0xFFBCC1AA).withOpacity(0.5),
                       child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(

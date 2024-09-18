@@ -2,6 +2,7 @@ import 'package:derma_skin_app/Pages/signup_page.dart';
 import 'package:derma_skin_app/Widgets/Navbar.dart';
 import 'package:derma_skin_app/consts/firebase_conts.dart';
 import 'package:derma_skin_app/helpers/snackbar.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,8 +22,10 @@ class _LoginState extends State<Login> {
     auth.authStateChanges().listen((User? user) {
       if (user == null && mounted) {
         Get.to(() => const Login());
+        // RouterPage.router.push("/login");
       } else {
         Get.to(() => const Navbar());
+        // RouterPage.router.push("/navbar");
       }
     });
   }
@@ -161,7 +164,8 @@ class _LoginState extends State<Login> {
                                         controller.isloading(false);
                                         AppHelpers.showSnackBar(
                                             context, "login successfully");
-                                        Get.offAll(() => const Navbar());
+                                        // Get.offAll(() => const Navbar());
+                                        RouterPage.router.push("/navbar");
                                       } else {
                                         controller.isloading(false);
                                         AppHelpers.showSnackBar(
@@ -200,11 +204,12 @@ class _LoginState extends State<Login> {
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const SignUp()),
-                                  );
+                                  RouterPage.router.push("/signup");
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (context) => const SignUp()),
+                                  // );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,

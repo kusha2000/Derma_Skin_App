@@ -1,10 +1,11 @@
 import 'package:derma_skin_app/Pages/login.dart';
-import 'package:derma_skin_app/Pages/signup_page.dart';
 import 'package:derma_skin_app/Widgets/Navbar.dart';
 import 'package:derma_skin_app/consts/firebase_conts.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -20,8 +21,10 @@ class _IntroPageState extends State<IntroPage> {
     auth.authStateChanges().listen((User? user) {
       if (user == null && mounted) {
         Get.to(() => const Login());
+        // RouterPage.router.push("/login");
       } else {
         Get.to(() => const Navbar());
+        // RouterPage.router.push("/navbar");
       }
     });
   }
@@ -101,10 +104,11 @@ class _IntroPageState extends State<IntroPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Login()),
-                  );
+                  RouterPage.router.push("/login");
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const Login()),
+                  // );
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -129,10 +133,11 @@ class _IntroPageState extends State<IntroPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SignUp()),
-                  );
+                  RouterPage.router.push("/signup");
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const SignUp()),
+                  // );
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,

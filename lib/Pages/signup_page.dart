@@ -1,10 +1,9 @@
 import 'package:derma_skin_app/Controllers/auth_controller.dart';
-import 'package:derma_skin_app/Pages/login.dart';
 import 'package:derma_skin_app/consts/firebase_conts.dart';
 import 'package:derma_skin_app/helpers/snackbar.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -212,8 +211,10 @@ class _SignUpState extends State<SignUp> {
                                                   AppHelpers.showSnackBar(
                                                       context,
                                                       "Signup is Successfuilly!");
-                                                  Get.offAll(
-                                                      () => const Login());
+                                                  // Get.offAll(
+                                                  //     () => const Login());
+                                                  RouterPage.router
+                                                      .push("/login");
                                                 }
                                               },
                                             );
@@ -258,11 +259,12 @@ class _SignUpState extends State<SignUp> {
                             width: MediaQuery.of(context).size.width * 0.7,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login()),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (context) => const Login()),
+                                // );
+                                RouterPage.router.push("/login");
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,

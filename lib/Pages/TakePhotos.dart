@@ -1,4 +1,5 @@
 import 'package:derma_skin_app/Pages/skin_model.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +51,8 @@ class TakePhotos extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => SkinModel());
+                        RouterPage.router
+                            .push("/skin-model"); // Get.to(() => SkinModel());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF607C6D),

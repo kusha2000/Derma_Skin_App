@@ -13,7 +13,7 @@ class TouchMan extends StatelessWidget {
             'images/man.jpeg',
             height: MediaQuery.of(context).size.height * 0.4,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -25,7 +25,7 @@ class TouchMan extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.25,
                   height: 35,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(25),
                       topLeft: Radius.circular(25),
                     ),
@@ -49,7 +49,7 @@ class TouchMan extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.25,
                   height: 35,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(25),
                       topRight: Radius.circular(25),
                     ),

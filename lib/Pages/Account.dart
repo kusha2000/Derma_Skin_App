@@ -8,6 +8,7 @@ import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
 import 'package:derma_skin_app/help_supprot_pages/app_instruction_page.dart';
 import 'package:derma_skin_app/help_supprot_pages/change_password_page.dart';
 import 'package:derma_skin_app/helpers/snackbar.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:derma_skin_app/Controllers/auth_controller.dart';
@@ -36,7 +37,8 @@ class _AccountState extends State<Account> {
         await user.delete();
 
         AppHelpers.showSnackBar(context, "User account deleted successfully");
-        Get.offAll(() => GetStarted());
+        // Get.offAll(() => const GetStarted());
+        RouterPage.router.go("/");
       } catch (e) {
         print("Error deleting user: $e");
 
@@ -51,9 +53,9 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFeaecdf),
+      backgroundColor: const Color(0xFFeaecdf),
       appBar: AppBar(
-        backgroundColor: Color(0xFF607C6D),
+        backgroundColor: const Color(0xFF607C6D),
         title: const Center(
           child: Text(
             "Account",
@@ -69,7 +71,7 @@ class _AccountState extends State<Account> {
               Container(
                 width: double.infinity,
                 height: 40,
-                color: Color(0xFFBCC1AA),
+                color: const Color(0xFFBCC1AA),
                 child: const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -88,12 +90,13 @@ class _AccountState extends State<Account> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => const MyPlan());
+                      // Get.to(() => const MyPlan());
+                      RouterPage.router.push("/myplan");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -106,12 +109,13 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => MyProfile());
+                      // Get.to(() => const MyProfile());
+                      RouterPage.router.push("myprofile");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -124,12 +128,13 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => StartSkinType());
+                      // Get.to(() => const StartSkinType());
+                      RouterPage.router.push("/start_skin_type");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -142,12 +147,13 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => StartRiskProfile());
+                      // Get.to(() => const StartRiskProfile());
+                      RouterPage.router.push("/start_risk-profile");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -160,12 +166,12 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => const SetReminder());
+                      RouterPage.router.push("/reminder");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -186,7 +192,7 @@ class _AccountState extends State<Account> {
               Container(
                 width: double.infinity,
                 height: 40,
-                color: Color(0xFFBCC1AA),
+                color: const Color(0xFFBCC1AA),
                 child: const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -205,7 +211,7 @@ class _AccountState extends State<Account> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextButton(
@@ -234,13 +240,14 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
 
                   TextButton(
                     onPressed: () {
-                      Get.to(() => const ChangePasswordPage());
+                      // Get.to(() => const ChangePasswordPage());
+                      RouterPage.router.push("/change-password");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -253,12 +260,14 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
 
                   TextButton(
-                    onPressed: () async {},
+                    onPressed: () async {
+                      RouterPage.router.push("/cancer-info");
+                    },
                     child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -270,7 +279,7 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   // TextButton(
@@ -287,7 +296,8 @@ class _AccountState extends State<Account> {
                   // ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => const InstructionsPage());
+                      // Get.to(() => const InstructionsPage());
+                      RouterPage.router.push("/use-info");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -300,7 +310,7 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   // TextButton(
@@ -354,7 +364,7 @@ class _AccountState extends State<Account> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                 ],
@@ -362,7 +372,7 @@ class _AccountState extends State<Account> {
               Container(
                 width: double.infinity,
                 height: 40,
-                color: Color(0xFFBCC1AA),
+                color: const Color(0xFFBCC1AA),
                 child: const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -382,7 +392,7 @@ class _AccountState extends State<Account> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextButton(
