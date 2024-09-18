@@ -1,4 +1,4 @@
-import 'package:derma_skin_app/Pages/intro_page.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
 
 class GetStarted extends StatelessWidget {
@@ -43,10 +43,11 @@ class GetStarted extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const IntroPage()),
-                  );
+                  RouterPage.router.push("/intro");
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const IntroPage()),
+                  // );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF4F7158),

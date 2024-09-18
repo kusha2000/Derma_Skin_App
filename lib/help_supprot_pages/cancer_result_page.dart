@@ -1,5 +1,4 @@
 import 'package:derma_skin_app/Widgets/risk_result_content.dart';
-import 'package:derma_skin_app/constatnt/colors.dart';
 import 'package:flutter/material.dart';
 
 class CancerResultPage extends StatelessWidget {

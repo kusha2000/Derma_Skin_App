@@ -1,4 +1,5 @@
 import 'package:derma_skin_app/constatnt/colors.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
 
 class FairSkinResultPage extends StatelessWidget {
@@ -49,7 +50,9 @@ class FairSkinResultPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.7,
               height: 40,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  RouterPage.router.push("/navbar");
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.appBarColor),
                 child: const Text(
@@ -68,7 +71,9 @@ class FairSkinResultPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.7,
               height: 40,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  RouterPage.router.push("/start_skin_type");
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.kButtonColor),
                 child: Text(

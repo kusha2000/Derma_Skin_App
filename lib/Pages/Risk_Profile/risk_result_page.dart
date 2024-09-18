@@ -1,5 +1,6 @@
 import 'package:derma_skin_app/Widgets/risk_result_content.dart';
 import 'package:derma_skin_app/constatnt/colors.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
 
 class RiskResultPage extends StatelessWidget {
@@ -45,7 +46,9 @@ class RiskResultPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.7,
               height: 40,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  RouterPage.router.push("/navbar");
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.appBarColor),
                 child: const Text(
@@ -64,7 +67,9 @@ class RiskResultPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.7,
               height: 40,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  RouterPage.router.push("/start_risk-profile");
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.kButtonColor),
                 child: Text(

@@ -24,7 +24,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Change Password'),
-        backgroundColor: Color(0xFF607C6D),
+        backgroundColor: const Color(0xFF607C6D),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -85,7 +85,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             _isLoading = true;
                           });
 
-                          Future.delayed(Duration(seconds: 2), () {
+                          Future.delayed(const Duration(seconds: 2), () {
                             setState(() {
                               _isLoading = false;
                             });
@@ -106,7 +106,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF607C6D), // Button color
+                        backgroundColor:
+                            const Color(0xFF607C6D), // Button color
                       ),
                       child: const Text('Change Password'),
                     ),
