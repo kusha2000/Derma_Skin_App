@@ -115,7 +115,7 @@ class _AccountState extends State<Account> {
                   TextButton(
                     onPressed: () {
                       // Get.to(() => const MyProfile());
-                      RouterPage.router.push("myprofile");
+                      RouterPage.router.push("/myprofile");
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,

@@ -18,10 +18,52 @@ class _BodyPageState extends State<BodyPage> {
     // Check if the current user is logged in
     User? currentUser = FirebaseAuth.instance.currentUser;
 
-    // If the user is not logged in, just display "User Name"
+    // If the user is not logged in, just display "User Name" and default person icon
     if (currentUser == null) {
-      return Scaffold(
-        body: Padding(
+      return _buildDefaultUserDisplay();
+    }
+
+    // If the user is logged in, fetch their name from Firestore
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 30),
+        child: StreamBuilder<DocumentSnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(currentUser.uid)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError ||
+                !snapshot.hasData ||
+                !snapshot.data!.exists) {
+              // In case of error or no user data, display the default user name and icon
+              return _buildDefaultUserDisplay();
+            } else {
+              // Get the user's data from Firestore
+              Map<String, dynamic>? userData =
+                  snapshot.data!.data() as Map<String, dynamic>?;
+
+              // Safeguard against missing user data
+              String firstName = userData?['fname'] ?? 'User';
+              String lastName = userData?['lname'] ?? 'Name';
+              String imageUrl = userData?['imageUrl'] ?? '';
+
+              // Display user's profile image and name, or default icon if no image
+              return _buildUserDisplay(firstName, lastName, imageUrl);
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  // Function to display default user icon and "User Name"
+  Widget _buildDefaultUserDisplay() {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30),
           child: Column(
             children: [
@@ -37,235 +79,109 @@ class _BodyPageState extends State<BodyPage> {
                   size: 60,
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               const Text(
-                "User Name", // Default name if no user is logged in
+                "User Name", // Default name
                 style: TextStyle(
                   color: Color(0xff506D5B),
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      RouterPage.router.push("/start_skin_type");
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      height: 35,
-                      color: AppColors.kmainCardColor,
-                      child: Center(
-                        child: Text(
-                          "Find Skin Type",
-                          style: TextStyle(
-                            color: AppColors.kWhite,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      RouterPage.router.push("/start_risk-profile");
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      height: 35,
-                      color: AppColors.kmainCardColor,
-                      child: Center(
-                        child: Text(
-                          "Find Risk Profile",
-                          style: TextStyle(
-                            color: AppColors.kWhite,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              const SizedBox(height: 20),
+              _buildButtonRow(),
               const SizedBox(height: 20),
               TouchMan(),
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
+  }
 
-    // If the user is logged in, fetch their name from Firestore
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: StreamBuilder<DocumentSnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('users')
-              .doc(currentUser.uid)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return const Center(child: Text('Error loading user data'));
-            } else if (!snapshot.hasData || !snapshot.data!.exists) {
-              return const Center(child: Text('No user data found'));
-            } else {
-              // Get the user's data from Firestore
-              Map<String, dynamic>? userData =
-                  snapshot.data!.data() as Map<String, dynamic>?;
-
-              // Add null checks for user data fields
-              String firstName = userData?['fname'] ?? 'User';
-              String lastName = userData?['lname'] ?? 'Name';
-
-              return Column(
-                children: [
-                  Container(
+  // Function to display user's profile image or name
+  Widget _buildUserDisplay(String firstName, String lastName, String imageUrl) {
+    return Column(
+      children: [
+        Container(
+          width: 90,
+          height: 90,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: AppColors.appBarColor,
+          ),
+          child: imageUrl.isEmpty
+              ? const Icon(Icons.person,
+                  size: 60) // Show person icon if no image
+              : ClipOval(
+                  child: Image.network(
+                    imageUrl,
                     width: 90,
                     height: 90,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: AppColors.appBarColor,
-                    ),
-                    child: currentUser != null
-                        ? StreamBuilder<DocumentSnapshot>(
-                            stream: FirebaseFirestore.instance
-                                .collection('users')
-                                .doc(currentUser.uid)
-                                .snapshots(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return const Center(
-                                    child: CircularProgressIndicator());
-                              } else if (snapshot.hasError) {
-                                return const Icon(
-                                  Icons.person,
-                                  size: 60,
-                                );
-                              } else if (snapshot.hasData &&
-                                  snapshot.data!.exists) {
-                                var userData = snapshot.data!.data()
-                                    as Map<String, dynamic>?;
-
-                                // Get the imageUrl from the user document
-                                String imageUrl = userData?['imageUrl'] ?? '';
-
-                                // If imageUrl is empty, show default icon
-                                if (imageUrl.isEmpty) {
-                                  return const Icon(
-                                    Icons.person,
-                                    size: 60,
-                                  );
-                                } else {
-                                  // Otherwise, show the user's profile photo
-                                  return ClipOval(
-                                    child: Image.network(
-                                      imageUrl,
-                                      width: 90,
-                                      height: 90,
-                                      fit: BoxFit.cover,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return const Icon(
-                                          Icons.person,
-                                          size: 60,
-                                        );
-                                      },
-                                    ),
-                                  );
-                                }
-                              } else {
-                                return const Icon(
-                                  Icons.person,
-                                  size: 60,
-                                );
-                              }
-                            },
-                          )
-                        : const Icon(
-                            Icons.person,
-                            size: 60,
-                          ),
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      // Fallback to default person icon if image loading fails
+                      return const Icon(Icons.person, size: 60);
+                    },
                   ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  // Dynamically display the user's full name
-                  Text(
-                    "$firstName $lastName",
-                    style: const TextStyle(
-                      color: Color(0xff506D5B),
-                      fontSize: 24,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          RouterPage.router.push("/start_skin_type");
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.40,
-                          height: 35,
-                          color: AppColors.kmainCardColor,
-                          child: Center(
-                            child: Text(
-                              "Find Skin Type",
-                              style: TextStyle(
-                                  color: AppColors.kWhite, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          RouterPage.router.push("/start_risk-profile");
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.40,
-                          height: 35,
-                          color: AppColors.kmainCardColor,
-                          child: Center(
-                            child: Text(
-                              "Find Risk Profile",
-                              style: TextStyle(
-                                  color: AppColors.kWhite, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TouchMan(),
-                ],
-              );
-            }
-          },
+                ),
         ),
-      ),
+        const SizedBox(height: 10),
+        Text(
+          "$firstName $lastName", // Display user's name
+          style: const TextStyle(
+            color: Color(0xff506D5B),
+            fontSize: 24,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 20),
+        _buildButtonRow(),
+        const SizedBox(height: 20),
+        TouchMan(),
+      ],
+    );
+  }
+
+  // Function to build the "Find Skin Type" and "Find Risk Profile" buttons
+  Widget _buildButtonRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {
+            RouterPage.router.push("/start_skin_type");
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.40,
+            height: 35,
+            color: AppColors.kmainCardColor,
+            child: Center(
+              child: Text(
+                "Find Skin Type",
+                style: TextStyle(color: AppColors.kWhite, fontSize: 18),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        GestureDetector(
+          onTap: () {
+            RouterPage.router.push("/start_risk-profile");
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.40,
+            height: 35,
+            color: AppColors.kmainCardColor,
+            child: Center(
+              child: Text(
+                "Find Risk Profile",
+                style: TextStyle(color: AppColors.kWhite, fontSize: 18),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
