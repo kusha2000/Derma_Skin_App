@@ -1,12 +1,4 @@
-import 'package:derma_skin_app/Pages/Get_Started_page.dart';
-import 'package:derma_skin_app/Pages/My_Plan.dart';
-import 'package:derma_skin_app/Pages/My_Profile.dart';
-import 'package:derma_skin_app/Pages/Risk_Profile/risk_start.dart';
-import 'package:derma_skin_app/Pages/Set_Remider.dart';
 import 'package:derma_skin_app/Pages/login.dart';
-import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
-import 'package:derma_skin_app/help_supprot_pages/app_instruction_page.dart';
-import 'package:derma_skin_app/help_supprot_pages/change_password_page.dart';
 import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
