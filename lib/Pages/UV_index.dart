@@ -1,4 +1,7 @@
+import 'package:derma_skin_app/Pages/UV_Page.dart';
+import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UVIndex extends StatelessWidget {
   const UVIndex({super.key});
@@ -68,7 +71,9 @@ class UVIndex extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      RouterPage.router.push("/uv-index-page");
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF607C6D),
                       shape: RoundedRectangleBorder(
