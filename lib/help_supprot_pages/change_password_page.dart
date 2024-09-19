@@ -109,7 +109,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         backgroundColor:
                             const Color(0xFF607C6D), // Button color
                       ),
-                      child: const Text('Change Password'),
+                      child: const Text(
+                        'Change Password',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
             ],
           ),

@@ -222,6 +222,18 @@ class _SkinModelState extends State<SkinModel> {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4F7158),
+                    ),
+                    onPressed: () {
+                      RouterPage.router.push("/clinic-details");
+                    },
+                    child: const Text(
+                      'Clinic Details',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ],
               ],
             ),

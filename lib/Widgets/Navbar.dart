@@ -25,11 +25,11 @@ class Navbar extends StatelessWidget {
       ),
       BottomNavigationBarItem(
         icon: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(0.5),
           child: Image.asset(
             'images/navCircle.png',
-            width: 60,
-            height: 60,
+            width: 55,
+            height: 55,
           ),
         ),
         label: "",

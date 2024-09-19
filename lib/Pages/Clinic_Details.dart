@@ -67,12 +67,14 @@ class ClinicDetails extends StatelessWidget {
     }
   ];
 
-  // Function to launch phone dialer with permission check
   void _callNumber(String phoneNumber) async {
-    // Request phone call permission
-    PermissionStatus status = await Permission.phone.request();
+    // Check the phone call permission status
+    PermissionStatus status = await Permission.phone.status;
 
-    print("Permission status: $status"); // Log the permission status
+    if (status.isDenied) {
+      // Request permission
+      status = await Permission.phone.request();
+    }
 
     if (status.isGranted) {
       final Uri launchUri = Uri(
@@ -85,12 +87,11 @@ class ClinicDetails extends StatelessWidget {
       } else {
         print('Could not launch the phone dialer for number: $phoneNumber');
       }
-    } else if (status.isDenied) {
-      print("Phone permission denied.");
-      // Optionally, show a message to the user explaining why permission is needed
     } else if (status.isPermanentlyDenied) {
       print("Phone permission permanently denied. Opening app settings.");
-      openAppSettings(); // Prompt user to go to settings
+      openAppSettings(); // Open app settings for the user to change permissions
+    } else {
+      print("Phone permission denied.");
     }
   }
 

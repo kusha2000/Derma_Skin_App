@@ -15,7 +15,6 @@ class CancerInformationPage extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
           ),
-          automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
           child: Container(

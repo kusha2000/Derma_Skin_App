@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:derma_skin_app/Pages/Account.dart';
+import 'package:derma_skin_app/Pages/Clinic_Details.dart';
 import 'package:derma_skin_app/Pages/Get_Started_page.dart';
 import 'package:derma_skin_app/Pages/My_Plan.dart';
 import 'package:derma_skin_app/Pages/My_Profile.dart';
@@ -122,13 +123,6 @@ class RouterPage {
       ),
 
       // // mybody
-      GoRoute(
-        name: "body-page",
-        path: "/body-page",
-        builder: (context, state) {
-          return const BodyPage();
-        },
-      ),
 
       // // message
       // GoRoute(
@@ -154,6 +148,13 @@ class RouterPage {
         path: "/take-photo",
         builder: (context, state) {
           return const TakePhotos();
+        },
+      ),
+      GoRoute(
+        name: "clinic-details",
+        path: "/clinic-details",
+        builder: (context, state) {
+          return ClinicDetails();
         },
       ),
 
@@ -227,7 +228,6 @@ class RouterPage {
       //   },
       // ),
 
-
       GoRoute(
         name: "uv-index-page",
         path: "/uv-index-page",
@@ -242,7 +242,6 @@ class RouterPage {
           return const BodyPage();
         },
       ),
-
 
       // startskintype
       GoRoute(
@@ -370,9 +369,6 @@ class RouterPage {
           return const InstructionsPage();
         },
       ),
-      
-      
     ],
   );
-  
 }

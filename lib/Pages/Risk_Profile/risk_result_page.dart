@@ -29,7 +29,7 @@ class RiskResultPage extends StatelessWidget {
         backgroundColor: const Color(0xFF607C6D),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(1),
         child: Column(
           children: [
             RiskResultContent(
