@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:derma_skin_app/Pages/Account.dart';
 import 'package:derma_skin_app/Pages/Get_Started_page.dart';
 import 'package:derma_skin_app/Pages/My_Plan.dart';
@@ -6,15 +8,20 @@ import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_start.dart';
 import 'package:derma_skin_app/Pages/Set_Remider.dart';
 import 'package:derma_skin_app/Pages/TakePhotos.dart';
+import 'package:derma_skin_app/Pages/UV_Page.dart';
 import 'package:derma_skin_app/Pages/UV_index.dart';
+import 'package:derma_skin_app/Pages/add_spot_page.dart';
 import 'package:derma_skin_app/Pages/body_page.dart';
+import 'package:derma_skin_app/Pages/food_page.dart';
 import 'package:derma_skin_app/Pages/intro_page.dart';
 import 'package:derma_skin_app/Pages/login.dart';
 import 'package:derma_skin_app/Pages/message.dart';
+import 'package:derma_skin_app/Pages/second_spot_page.dart';
 import 'package:derma_skin_app/Pages/signup_page.dart';
 import 'package:derma_skin_app/Pages/skin_model.dart';
 import 'package:derma_skin_app/Pages/skin_type/fair_skin_result_page.dart';
 import 'package:derma_skin_app/Pages/skin_type/skin_type_start_page.dart';
+import 'package:derma_skin_app/Pages/third_spot_page.dart';
 import 'package:derma_skin_app/Widgets/Navbar.dart';
 import 'package:derma_skin_app/help_supprot_pages/app_instruction_page.dart';
 import 'package:derma_skin_app/help_supprot_pages/cancer_information_page.dart';
@@ -115,13 +122,13 @@ class RouterPage {
       ),
 
       // // mybody
-      // GoRoute(
-      //   name: "mybody",
-      //   path: "/mybody",
-      //   builder: (context, state) {
-      //     return const BodyPage();
-      //   },
-      // ),
+      GoRoute(
+        name: "body-page",
+        path: "/body-page",
+        builder: (context, state) {
+          return const BodyPage();
+        },
+      ),
 
       // // message
       // GoRoute(
@@ -142,11 +149,71 @@ class RouterPage {
       // ),
 
       // // take photos
+      GoRoute(
+        name: "take-photo",
+        path: "/take-photo",
+        builder: (context, state) {
+          return const TakePhotos();
+        },
+      ),
+
+//add spot page
+      GoRoute(
+        name: "add-spot-page",
+        path: "/add-spot-page",
+        builder: (context, state) {
+          final int index = state.extra as int;
+          return AddSpotPage(index: index);
+        },
+      ),
+
+      //second spot page
+      GoRoute(
+        name: "second-spot-page",
+        path: "/second-spot-page",
+        builder: (context, state) {
+          final int index = state.extra as int;
+          return SecondSpotPage(index: index);
+        },
+      ),
+
+      // third spot page
+      GoRoute(
+        name: "third-spot-page",
+        path: "/third-spot-page",
+        builder: (context, state) {
+          final int index = state.extra as int;
+          return ThirdSpotPage(index: index);
+        },
+      ),
+
+      GoRoute(
+        name: "food-page",
+        path: "/food-page",
+        builder: (context, state) {
+          final title =
+              (state.extra as Map<String, dynamic>)["title"] as String;
+          final description =
+              (state.extra as Map<String, dynamic>)["description"] as String;
+          final foodToEat =
+              (state.extra as Map<String, dynamic>)["foodToEat"] as String;
+          final foodToAvoid =
+              (state.extra as Map<String, dynamic>)["foodToAvoid"] as String;
+
+          return FoodPage(
+            title: title,
+            description: description,
+            foodToEat: foodToEat,
+            foodToAvoid: foodToAvoid,
+          );
+        },
+      ),
+
       // GoRoute(
-      //   name: "take-photo",
-      //   path: "/take-photo",
+      //   name: "skin-model",
+      //   path: "/",
       //   builder: (context, state) {
-      //     return const TakePhotos();
+      //     return SkinModel();
       //   },
       // ),
 
@@ -160,7 +227,14 @@ class RouterPage {
       //   },
       // ),
 
-      // body page
+
+      GoRoute(
+        name: "uv-index-page",
+        path: "/uv-index-page",
+        builder: (context, state) {
+          return UVIndexPage();
+        },
+      ),
       GoRoute(
         name: "body-page",
         path: "/body",
@@ -168,6 +242,7 @@ class RouterPage {
           return const BodyPage();
         },
       ),
+
 
       // startskintype
       GoRoute(
@@ -295,6 +370,9 @@ class RouterPage {
           return const InstructionsPage();
         },
       ),
+      
+      
     ],
   );
+  
 }

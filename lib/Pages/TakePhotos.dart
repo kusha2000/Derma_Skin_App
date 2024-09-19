@@ -1,7 +1,5 @@
-import 'package:derma_skin_app/Pages/skin_model.dart';
 import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class TakePhotos extends StatelessWidget {
   const TakePhotos({super.key});

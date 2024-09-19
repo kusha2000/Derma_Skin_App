@@ -3,12 +3,9 @@ import 'package:derma_skin_app/constatnt/colors.dart';
 import 'package:derma_skin_app/routers/router_page.dart';
 import 'package:flutter/material.dart';
 
-class SecondSpotPage extends StatelessWidget {
+class ThirdSpotPage extends StatelessWidget {
   final int index;
-  const SecondSpotPage({
-    super.key,
-    required this.index,
-  });
+  const ThirdSpotPage({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +23,15 @@ class SecondSpotPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // ignore: prefer_const_constructors
           Padding(
             padding: const EdgeInsets.only(top: 50),
-            child: const TouchMan(
-              index: 0,
+            child: TouchMan(
+              index: index,
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -74,9 +70,10 @@ class SecondSpotPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.25,
                   height: 35,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      bottomRight: Radius.circular(25),
-                      topRight: Radius.circular(25),
+                    // ignore: prefer_const_constructors
+                    borderRadius: BorderRadius.only(
+                      bottomRight: const Radius.circular(25),
+                      topRight: const Radius.circular(25),
                     ),
                     color: AppColors.kButtonColor,
                   ),
@@ -109,6 +106,7 @@ class SecondSpotPage extends StatelessWidget {
                   onPressed: () {
                     RouterPage.router.push("/take-photo");
                   },
+                  // ignore: sort_child_properties_last
                   child: Text(
                     "Add new",
                     style: TextStyle(color: AppColors.kWhite, fontSize: 20),
