@@ -6,6 +6,7 @@ import 'package:derma_skin_app/Pages/Risk_Profile/risk_result_page.dart';
 import 'package:derma_skin_app/Pages/Risk_Profile/risk_start.dart';
 import 'package:derma_skin_app/Pages/Set_Remider.dart';
 import 'package:derma_skin_app/Pages/TakePhotos.dart';
+import 'package:derma_skin_app/Pages/UV_Page.dart';
 import 'package:derma_skin_app/Pages/UV_index.dart';
 import 'package:derma_skin_app/Pages/body_page.dart';
 import 'package:derma_skin_app/Pages/intro_page.dart';
@@ -161,6 +162,13 @@ class RouterPage {
       // ),
 
       // body page
+      GoRoute(
+        name: "uv-index-page",
+        path: "/uv-index-page",
+        builder: (context, state) {
+          return UVIndexPage();
+        },
+      ),
       GoRoute(
         name: "body-page",
         path: "/body",
