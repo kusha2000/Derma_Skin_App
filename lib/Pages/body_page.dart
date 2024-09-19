@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:derma_skin_app/helpers/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:derma_skin_app/Widgets/touch_man.dart';
@@ -91,7 +92,88 @@ class _BodyPageState extends State<BodyPage> {
               const SizedBox(height: 20),
               _buildButtonRow(),
               const SizedBox(height: 20),
-              TouchMan(),
+              GestureDetector(
+                onTap: () {
+                  AppHelpers.showSnackBar(
+                      context, "Please Select man Front or Back side");
+                },
+                child: const TouchMan(
+                  index: 0,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const AddSpotPage(
+                      //             index: 0,
+                      //           )),
+                      // );
+                      RouterPage.router.push("/add-spot-page", extra: 0);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(25),
+                          topLeft: Radius.circular(25),
+                        ),
+                        color: AppColors.kButtonColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Front",
+                          style: TextStyle(
+                              color: AppColors.appBarColor, fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const AddSpotPage(
+                      //       index: 1,
+                      //     ),
+                      //   ),
+                      // );
+
+                      RouterPage.router.push("/add-spot-page", extra: 1);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          bottomRight: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        ),
+                        color: AppColors.kButtonColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              color: AppColors.appBarColor, fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -138,7 +220,80 @@ class _BodyPageState extends State<BodyPage> {
         const SizedBox(height: 20),
         _buildButtonRow(),
         const SizedBox(height: 20),
-        TouchMan(),
+        const TouchMan(
+          index: 0,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => const AddSpotPage(
+                //             index: 0,
+                //           )),
+                // );
+                RouterPage.router.push("/add-spot-page", extra: 0);
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                height: 35,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    topLeft: Radius.circular(25),
+                  ),
+                  color: AppColors.kButtonColor,
+                ),
+                child: Center(
+                  child: Text(
+                    "Front",
+                    style:
+                        TextStyle(color: AppColors.appBarColor, fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => const AddSpotPage(
+                //             index: 1,
+                //           )),
+                // );
+                RouterPage.router.push("/add-spot-page", extra: 1);
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                height: 35,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    bottomRight: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                  ),
+                  color: AppColors.kButtonColor,
+                ),
+                child: Center(
+                  child: Text(
+                    "Back",
+                    style:
+                        TextStyle(color: AppColors.appBarColor, fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
