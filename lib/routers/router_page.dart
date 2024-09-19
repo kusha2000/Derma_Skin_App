@@ -1,4 +1,5 @@
 import 'package:derma_skin_app/Pages/Account.dart';
+import 'package:derma_skin_app/Pages/Clinic_Details.dart';
 import 'package:derma_skin_app/Pages/Get_Started_page.dart';
 import 'package:derma_skin_app/Pages/My_Plan.dart';
 import 'package:derma_skin_app/Pages/My_Profile.dart';
@@ -89,12 +90,6 @@ class RouterPage {
             },
           ),
           GoRoute(
-            path: 'message',
-            builder: (context, state) {
-              return const Message();
-            },
-          ),
-          GoRoute(
             path: 'take-photo',
             builder: (context, state) {
               return const TakePhotos();
@@ -117,8 +112,13 @@ class RouterPage {
 
       // // mybody
       // GoRoute(
+<<<<<<< Updated upstream
       //   name: "mybody",
       //   path: "/mybody",
+=======
+      //   name: "body-page",
+      //   path: "/body-page",
+>>>>>>> Stashed changes
       //   builder: (context, state) {
       //     return const BodyPage();
       //   },
@@ -161,7 +161,10 @@ class RouterPage {
       //   },
       // ),
 
+<<<<<<< Updated upstream
       // body page
+=======
+>>>>>>> Stashed changes
       GoRoute(
         name: "uv-index-page",
         path: "/uv-index-page",
@@ -210,6 +213,14 @@ class RouterPage {
         path: "/start_risk-profile",
         builder: (context, state) {
           return const StartRiskProfile();
+        },
+      ),
+
+      GoRoute(
+        name: "clinic_details",
+        path: "/clinic_details",
+        builder: (context, state) {
+          return ClinicDetails();
         },
       ),
 

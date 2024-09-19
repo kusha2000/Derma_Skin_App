@@ -123,7 +123,23 @@ class _SkinModelState extends State<SkinModel> {
                     _result,
                     style: TextStyle(fontSize: 20.0),
                   ),
+<<<<<<< Updated upstream
                 ),
+=======
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4F7158),
+                    ),
+                    onPressed: () {
+                      RouterPage.router.push("/clinic_details");
+                    },
+                    child: const Text(
+                      'Clinic Details',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+>>>>>>> Stashed changes
               ],
             ),
           ),
