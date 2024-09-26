@@ -390,7 +390,8 @@ class _AccountState extends State<Account> {
                   TextButton(
                     onPressed: () async {
                       await Get.put(AuthController()).signoutMethod(context);
-                      Get.offAll(() => const Login());
+                      RouterPage.router.push("/");
+                      //Get.offAll(() => const Login());
                     },
                     child: const Align(
                       alignment: Alignment.centerLeft,

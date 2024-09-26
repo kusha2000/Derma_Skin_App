@@ -33,6 +33,9 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     changeScreen();
+    var controller = Get.put(AuthController());
+    controller.emailController.clear();
+    controller.passwordController.clear();
     super.initState();
   }
 
