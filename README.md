@@ -7,14 +7,15 @@ Skin diseases affect approximately one in three people worldwide (WHO). Despite 
 
 <h3><u>Technologies Used</u></h3>
 <ul>
-<li>Frontend: Flutter</li>
-<li>Backend: Python</li>
-<li>Database: Firebase</li>
-<li>Machine Learning: TensorFlow, OpenCV</li>
-<li>API Integration: UV Exposure API</li>
+🔹 Frontend: Flutter<br>
+🔹 Backend: Python<br>
+🔹 Database: Firebase<br>
+🔹 Machine Learning: TensorFlow, OpenCV<br>
+🔹 API Integration: UV Exposure API<br>
 
 </ul>
 <h3><u>Features</u></h3>
+<ul>
 ✅ User Registration & Login: Secure and easy account setup.<br>
 ✅ Risk Profile: Maintain and track your skin health.<br>
 ✅ Identify Skin Type: Tailored insights based on your skin type.<br>
@@ -23,8 +24,13 @@ Skin diseases affect approximately one in three people worldwide (WHO). Despite 
 ✅ Nearby Clinics: Find doctors and specialists for further consultation.<br>
 ✅ UV Exposure Information: Real-time UV index based on your location.<br>
 ✅ Profile Management: Easy settings and profile customization.<br>
-
+</ul>
 <h2>This is the Full Demo of the project</h2><br><br>
+
+
+https://github.com/user-attachments/assets/fc6faa8b-4bea-4055-964e-575ea7929f94
+
+
 
 <h2>This is the screenshots of the system</h2><br><br>
 <img src="https://github.com/user-attachments/assets/d5424d48-c32b-4261-905e-f026ec62a595" width="300" height="400">
